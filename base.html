@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Location-Based Access System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <div class="page-shell {% block shell_class %}{% endblock %}">
+        <header class="site-header {% block header_class %}{% endblock %}">
+            <div class="brand">
+                <div class="brand-mark">SL</div>
+                <div class="brand-copy">
+                    <h1>Secure Location-Based Access System</h1>
+                    <p>Geo-fenced decryption, adaptive access intelligence, and phishing-aware transfer control.</p>
+                </div>
+            </div>
+
+            <nav class="nav-buttons">
+                {% set public_page = request.endpoint in ['index', 'login', 'signup'] %}
+                {% if public_page %}
+                    <a href="{{ url_for('login') }}" class="{% if request.endpoint == 'login' %}btn{% else %}btn-secondary{% endif %}">Login</a>
+                    <a href="{{ url_for('signup') }}" class="{% if request.endpoint == 'signup' or request.endpoint == 'index' %}btn{% else %}btn-secondary{% endif %}">Signup</a>
+                {% elif session.get('logged_in') %}
+                    <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}btn{% else %}btn-secondary{% endif %}">Home</a>
+                    <a href="{{ url_for('logout') }}" class="btn-ghost">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn-secondary">Login</a>
+                    <a href="{{ url_for('signup') }}" class="btn">Signup</a>
+                {% endif %}
+            </nav>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <section class="alerts {% block alerts_class %}{% endblock %}">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

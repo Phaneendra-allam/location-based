@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block body_class %}landing-page{% endblock %}
+{% block shell_class %}page-shell-landing{% endblock %}
+{% block content %}
+    <section class="welcome-hero">
+        <div class="welcome-copy">
+            <div class="eyebrow">Secure Access</div>
+            <h2 class="welcome-title">Location-aware protection for sensitive access.</h2>
+            <p class="welcome-subtitle">
+                Verify trusted location, apply machine learning based access checks,
+                protect messages with encryption, and screen uploads before transfer.
+            </p>
+
+            <div class="welcome-actions">
+                <a href="{{ url_for('signup') }}" class="btn">Get Started</a>
+                <a href="{{ url_for('login') }}" class="btn-secondary">Login</a>
+            </div>
+        </div>
+
+        <div class="welcome-visual">
+            <div class="welcome-illustration-card">
+                <div class="illustration-shell">
+                    <div class="illustration-copy">
+                        <span>Integrated Protection</span>
+                        <strong>Geo Validation + Encryption + Threat Screening</strong>
+                    </div>
+
+                    <div class="illustration-art">
+                        <svg viewBox="0 0 760 520" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="panelGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#173449"/>
+                                    <stop offset="100%" stop-color="#0b1f30"/>
+                                </linearGradient>
+                                <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#7fdff4"/>
+                                    <stop offset="100%" stop-color="#3dd9c4"/>
+                                </linearGradient>
+                            </defs>
+
+                            <rect x="30" y="36" width="700" height="448" rx="28" fill="url(#panelGlow)" stroke="rgba(145,193,255,0.16)"/>
+                            <rect x="62" y="82" width="292" height="300" rx="24" fill="#071523" stroke="rgba(145,193,255,0.10)"/>
+                            <rect x="388" y="82" width="310" height="126" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(145,193,255,0.10)"/>
+                            <rect x="388" y="228" width="310" height="126" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(145,193,255,0.10)"/>
+                            <rect x="388" y="374" width="310" height="78" rx="22" fill="rgba(255,255,255,0.04)" stroke="rgba(145,193,255,0.10)"/>
+
+                            <g opacity="0.18">
+                                <path d="M88 118H330M88 154H330M88 190H330M88 226H330M88 262H330M88 298H330M88 334H330" stroke="#7ba2bd"/>
+                                <path d="M104 100V362M140 100V362M176 100V362M212 100V362M248 100V362M284 100V362M320 100V362" stroke="#7ba2bd"/>
+                            </g>
+
+                            <circle cx="146" cy="168" r="12" fill="#8ee7ff"/>
+                            <circle cx="298" cy="226" r="12" fill="#8ee7ff"/>
+                            <circle cx="188" cy="310" r="12" fill="#8ee7ff"/>
+                            <circle cx="248" cy="250" r="14" fill="#3dd9c4"/>
+                            <circle cx="248" cy="250" r="32" fill="none" stroke="rgba(61,217,196,0.18)"/>
+                            <circle cx="248" cy="250" r="52" fill="none" stroke="rgba(61,217,196,0.10)"/>
+                            <path d="M158 190 248 250 296 226" stroke="url(#accentLine)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <path d="M198 304 248 250" stroke="url(#accentLine)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                            <path d="M520 102 570 118v40c0 35-22 65-50 84-28-19-50-49-50-84v-40l50-16Z" fill="rgba(61,217,196,0.12)" stroke="#3dd9c4" stroke-width="3"/>
+                            <path d="M500 152 515 167 542 138" fill="none" stroke="#e9f3ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+                            <rect x="466" y="252" width="64" height="78" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(145,193,255,0.12)"/>
+                            <path d="M480 278h36M480 294h28M480 310h32" stroke="#dcecff" stroke-width="5" stroke-linecap="round"/>
+                            <circle cx="585" cy="292" r="28" fill="rgba(61,217,196,0.10)" stroke="#3dd9c4" stroke-width="4"/>
+                            <path d="M574 293 582 301 596 285" fill="none" stroke="#e9f3ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                            <rect x="412" y="396" width="264" height="34" rx="17" fill="rgba(255,255,255,0.05)"/>
+                            <rect x="428" y="407" width="76" height="12" rx="6" fill="#3dd9c4"/>
+                            <rect x="516" y="407" width="64" height="12" rx="6" fill="#8ee7ff"/>
+                            <rect x="592" y="407" width="52" height="12" rx="6" fill="rgba(255,255,255,0.20)"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

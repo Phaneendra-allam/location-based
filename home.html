@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block header_class %}content-width-header{% endblock %}
+{% block alerts_class %}content-width-header{% endblock %}
+{% block content %}
+    <section class="dashboard">
+        <div class="card verification-card form-wide-card">
+            <form method="POST" class="verification-layout">
+                <section class="section-panel">
+                    <div class="section-heading">
+                        <h3>Office Geofence Setup</h3>
+                        <div class="step-pill">Step 1</div>
+                    </div>
+
+                    <div class="office-row-grid">
+                        <div class="form-group">
+                            <label for="office1">Office 1 Coordinates</label>
+                            <input id="office1" type="text" name="office1" value="{{ office1 }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="office2">Office 2 Coordinates</label>
+                            <input id="office2" type="text" name="office2" value="{{ office2 }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="office3">Office 3 Coordinates</label>
+                            <input id="office3" type="text" name="office3" value="{{ office3 }}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label for="radius">Allowed Radius</label>
+                        <div class="range-row">
+                            <input id="radius" type="range" name="radius" min="0.1" max="10.0" step="0.1"
+                                   value="{{ radius }}"
+                                   oninput="document.getElementById('radiusValue').value = this.value + ' km'">
+                            <output id="radiusValue" class="range-value">{{ radius }} km</output>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-panel">
+                    <div class="section-heading">
+                        <h3>Confidential Message Encryption</h3>
+                        <div class="step-pill">Step 2</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="secret_message">Secret Message</label>
+                        <input id="secret_message" type="password" name="secret_message" value="{{ secret_message }}" required>
+                    </div>
+
+                    <details class="encryption-details">
+                        <summary>View Encryption Output</summary>
+                        <div class="result-box" style="margin-top: 14px;">
+                            <strong>Encrypted Payload</strong>
+                            <p class="mono">{{ encrypted_message }}</p>
+                        </div>
+                    </details>
+                </section>
+
+                <section class="section-panel">
+                    <div class="section-heading">
+                        <h3>Access Validation</h3>
+                        <div class="step-pill">Step 3</div>
+                    </div>
+
+                    <button type="submit" name="get_location" class="btn verify-btn">Verify Current Location</button>
+
+                    {% if current_location %}
+                        <div class="result-box" style="margin-top: 18px;">
+                            <div class="data-list">
+                                <div class="data-row">
+                                    <span>Detected Location</span>
+                                    <strong>{{ current_location }}</strong>
+                                </div>
+                                <div class="data-row">
+                                    <span>Verification Status</span>
+                                    <strong class="{% if access_granted %}safe{% else %}danger{% endif %}">
+                                        {% if access_granted %}Access Granted{% else %}Access Denied{% endif %}
+                                    </strong>
+                                </div>
+                                {% if decrypted_message %}
+                                    <div class="data-row">
+                                        <span>Decrypted Message</span>
+                                        <strong>{{ decrypted_message }}</strong>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </section>
+            </form>
+        </div>
+    </section>
+{% endblock %}

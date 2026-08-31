@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block header_class %}content-width-header{% endblock %}
+{% block alerts_class %}content-width-header{% endblock %}
+{% block content %}
+    <section class="dashboard">
+        <div class="card verification-card form-wide-card">
+            <div class="section-stack">
+                {% if decrypted_message %}
+                    <section class="section-panel">
+                        <div class="section-heading">
+                            <h3>Decrypted Message</h3>
+                        </div>
+
+                        <div class="result-box">
+                            <p>{{ decrypted_message }}</p>
+                        </div>
+                    </section>
+                {% endif %}
+
+                <section class="section-panel">
+                    <div class="section-heading">
+                        <h3>File Upload</h3>
+                        <div class="step-pill">Step 4</div>
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" class="upload-panel">
+                        <div class="form-group">
+                            <label for="file">Upload File</label>
+                            <input id="file" type="file" name="file" required>
+                        </div>
+                        <button type="submit" name="upload_file" class="btn">Upload and Scan File</button>
+                    </form>
+                </section>
+
+                {% if phishing_results %}
+                    <section class="section-panel">
+                        <div class="section-heading">
+                            <h3>Phishing Detection Results</h3>
+                        </div>
+
+                        <table class="result-table">
+                            <thead>
+                                <tr>
+                                    <th>URL</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in phishing_results %}
+                                    <tr>
+                                        <td>{{ item.url }}</td>
+                                        <td>
+                                            {% if item.status == "PHISHING" %}
+                                                <span class="danger">Phishing</span>
+                                            {% else %}
+                                                <span class="safe">No Phishing Detected</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

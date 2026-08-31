@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="empty-state card">
+        <div class="eyebrow">Access Control</div>
+        <h2>Access to this area has been denied</h2>
+        <p class="auth-copy">
+            The current request does not satisfy the required security conditions.
+            Please return to the dashboard and complete verification again.
+        </p>
+        <a href="{{ url_for('home') }}" class="btn">Return to Dashboard</a>
+    </section>
+{% endblock %}
